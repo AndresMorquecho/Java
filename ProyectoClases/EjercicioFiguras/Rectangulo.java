@@ -25,4 +25,9 @@ public class Rectangulo {
 	}
 	
 	
+	public double calcularPerimetroCuadrado() {
+		double PerimetroCuadrado = lado * 4;
+		return PerimetroCuadrado;
+	}
+	
 }
