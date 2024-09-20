@@ -4,7 +4,7 @@ public class Rectangulo {
 	
 	public int base;
 	public int altura;
-	
+	public double lado;
 
 	public int calcularArea() {
 		int area = base* altura;
@@ -17,5 +17,12 @@ public class Rectangulo {
 		int perimetro = (base * 2) + (altura * 2);
 		return perimetro;
 	}
+	
+	
+	public double calcularAreaCuadrado() {
+		double areacuadrado = (double)  Math.pow(lado,2);
+		return areacuadrado;
+	}
+	
 	
 }
