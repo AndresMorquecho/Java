@@ -15,27 +15,27 @@ public class TestProducto {
 		
 			
 		
-		productoA.nombre = "Paracetamol 1GR";
-		productoA.descripcion = "Contra el dolor";
-		productoA.precio = 1.20;
-		productoA.stockActual = 200;
+		productoA.setNombre("Paracetamol 1GR");
+		productoA.setDescripcion("Contra el dolor");
+		productoA.setPrecio(1.20);
+		productoA.setStockActual(200);
 
 		
-		productoB.nombre = "Mentol Chino";
-		productoB.descripcion = "Para dolores musculares";
-		productoB.precio = 1;
-		productoB.stockActual = 100;
+		productoB.setNombre("Mentol Chino");
+		productoB.setDescripcion("Para dolores musculares");
+		productoB.setPrecio(1);
+		productoB.setStockActual(100);
 		
 		
-		productoC.nombre = "Cicatricure";
-		productoC.descripcion = "Crema para las cicatrices ";
-		productoC.precio = 8.10;
-		productoC.stockActual = 20;
+		productoC.setNombre("Cicatricure");
+		productoC.setDescripcion( "Crema para las cicatrices");
+		productoC.setPrecio(8.10);
+		productoC.setStockActual(20);
 		
 		
-		System.out.println("Producto A Nombre: " + productoA.nombre + " Descripción: " + productoA.descripcion + " Precio: " + productoA.precio + " Stock: " + productoA.stockActual );
-		System.out.println("Producto B Nombre: " + productoB.nombre + " Descripción: " + productoB.descripcion + " Precio: " + productoB.precio + " Stock: " + productoB.stockActual );		
-		System.out.println("Producto C Nombre: " + productoC.nombre + " Descripción: " + productoC.descripcion + " Precio: " + productoC.precio + " Stock: " + productoC.stockActual );
+		System.out.println("Producto A Nombre: " + productoA.getNombre() + " Descripción: " + productoA.getDescripcion() + " Precio: " + productoA.getPrecio() + " Stock: " + productoA.getStockActual() );
+		System.out.println("Producto B Nombre: " + productoB.getNombre() + " Descripción: " + productoB.getDescripcion() + " Precio: " + productoB.getPrecio() + " Stock: " + productoB.getStockActual() );		
+		System.out.println("Producto C Nombre: " + productoC.getNombre() + " Descripción: " + productoC.getDescripcion() + " Precio: " + productoC.getPrecio() + " Stock: " + productoC.getStockActual() );
 
 		
 		

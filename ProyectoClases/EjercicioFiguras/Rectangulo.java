@@ -2,9 +2,43 @@ package com.krakedev;
 
 public class Rectangulo {
 	
-	public int base;
-	public int altura;
-	public double lado;
+	private int base;
+	private int altura;
+	private double lado;
+
+	
+	
+	
+	
+	public int getBase() {
+		return base;
+	}
+
+
+	public void setBase(int base) {
+		this.base = base;
+	}
+
+
+	public int getAltura() {
+		return altura;
+	}
+
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+
+
+	public double getLado() {
+		return lado;
+	}
+
+
+	public void setLado(double lado) {
+		this.lado = lado;
+	}
+
 
 	public int calcularArea() {
 		int area = base* altura;
