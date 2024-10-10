@@ -2,8 +2,10 @@ package com.krakedev.persistencia.ejercicios;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 
 import org.apache.logging.log4j.Logger;
 
@@ -99,51 +101,81 @@ public class AdminPersonas {
 		}
 
 	}
-	
-	
-	
+
 	public static void EliminarPersona(Personas persona) {
-		
-		
+
 		Connection con = null;
-		PreparedStatement ps =null;
-		
+		PreparedStatement ps = null;
+
 		try {
 			con = ConexionBDD.Conectar();
 			ps = con.prepareStatement("Delete from persona where cedula = ?");
-			
-			ps.setString(1, persona.getCedula());
-			
-			
-			ps.executeUpdate();
-			
-			
 
-			
-			
+			ps.setString(1, persona.getCedula());
+
+			ps.executeUpdate();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			LOGGER.error("Error al conectarse a la base de datos" + e.getMessage());
-		}finally {
-			
+		} finally {
+
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				LOGGER.error("Error al cerrar la conexión" + e.getMessage());
 			}
-			
+
 		}
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
-	
-	
+
+	public static ArrayList<Personas> buscarPorNombre(String nombreBusqueda) throws Exception {
+
+		ArrayList<Personas> personas = new ArrayList<Personas>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = ConexionBDD.Conectar();
+
+			ps = con.prepareStatement("select * from persona where nombre like ?");
+			ps.setString(1, "%" + nombreBusqueda + "%");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				String nombre = rs.getString("nombre");
+				String cedula = rs.getString("cedula");
+
+				Personas p = new Personas();
+
+				p.setNombre(nombre);
+				p.setCedula(cedula);
+
+				personas.add(p);
+
+			}
+
+		} catch (Exception e) {
+
+			LOGGER.error("Error al consultar por nombre", e);
+			throw new Exception("Error al consultar por nombre");
+
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				LOGGER.error("Error con la base de datos", e);
+				throw new Exception("Error con la base de datos");
+			}
+		}
+
+		return personas;
+
+	}
 
 }
