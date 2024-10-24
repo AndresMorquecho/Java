@@ -1,0 +1,26 @@
+package com.krakedev.evaluacion.servicios;
+
+import javax.ws.rs.Path;
+
+@Path("funciones")
+public class ServiciosCategoria {
+
+	
+	public Response insertarCategoria() {
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

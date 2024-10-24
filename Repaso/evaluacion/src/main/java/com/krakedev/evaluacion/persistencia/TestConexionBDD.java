@@ -1,0 +1,32 @@
+package com.krakedev.evaluacion.persistencia;
+
+import java.sql.Connection;
+
+import com.krakedev.evaluacion.excepciones.KrakeException;
+import com.krakedev.evaluacion.utils.ConexionBDD;
+
+public class TestConexionBDD {
+
+	public static void probarConexion() {
+
+		Connection con = null;
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			
+			if(con!=null) {
+				System.out.println("Conectado");
+			}else {
+				System.out.println("No conectado");
+			}
+			
+		} catch (KrakeException e) {
+			e.printStackTrace();
+			
+			System.out.println("No conectado" + e.getMessage());
+			
+		}
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.krakedev.evaluacion.persistencia;
+
+import java.sql.Connection;
+
+import com.krakedev.evaluacion.excepciones.KrakeException;
+import com.krakedev.evaluacion.utils.ConexionBDD;
+
+public class TestConexionBDD {
+
+	
+		
+	private void probarConexion() {
+		
+		Connection con = null;
+		
+		try {
+			con = ConexionBDD.obtenerConexion();
+		} catch (KrakeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+}

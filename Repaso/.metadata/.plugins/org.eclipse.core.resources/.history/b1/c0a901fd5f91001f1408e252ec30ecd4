@@ -1,0 +1,15 @@
+package com.krakedev.evaluacion.servicios;
+
+import com.krakedev.evaluacion.persistencia.TestConexionBDD;
+
+public class ServiciosConexion {
+
+		
+	private void probarCon() {
+		
+
+		
+		
+	}
+	
+}

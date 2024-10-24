@@ -1,0 +1,17 @@
+package com.krakedev.evaluacion.persistencia;
+
+import java.sql.Connection;
+
+public class TestConexionBDD {
+
+	
+		
+	private void probarConexion() {
+		
+		Connection con = null;
+		
+		con =
+		
+	}
+	
+}

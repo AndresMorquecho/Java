@@ -1,0 +1,11 @@
+package com.krakedev.evaluacion.entidades;
+
+public class Categoria {
+
+	private String id;
+	private String nombre;
+	
+	
+	
+	
+}

@@ -1,0 +1,137 @@
+package com.krakedev.evaluacion.persistencia;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.krakedev.evaluacion.entidades.Categoria;
+import com.krakedev.evaluacion.excepciones.KrakeException;
+import com.krakedev.evaluacion.utils.ConexionBDD;
+
+public class HistorialBDD {
+
+	public void insertar(Categoria categoria) throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("insert into categorias(id, nombre) values(?,?)");
+
+			ps.setString(1, categoria.getId());
+			ps.setString(2, categoria.getNombre());
+
+			ps.execute();
+
+		} catch (KrakeException e) {
+			throw e;
+		} catch (SQLException e) {
+
+			throw new KrakeException("Error en la insercción de dato: " + e.getMessage());
+		} finally {
+			con.close();
+		}
+
+	}
+
+	public void Actualizaar(Categoria categoria) throws KrakeException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("update categorias set nombre = ? where id = ?");
+			ps.setString(1, categoria.getNombre());
+			ps.setString(2, categoria.getId());
+
+			ps.execute();
+
+		} catch (KrakeException e) {
+			throw e;
+		} catch (SQLException e) {
+			throw new KrakeException("Error en la actualización de categoria: " + e.getMessage());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+
+				e.getMessage();
+			}
+		}
+
+	}
+
+	public Categoria BuscarPorId(String id) throws KrakeException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Categoria categoria = null;
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("Select * from categorias where id = ?");
+			ps.setString(1, id);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				categoria = new Categoria(rs.getString("id"), rs.getString("nombre"));
+
+			}
+
+		} catch (KrakeException e) {
+			throw e;
+		} catch (SQLException e) {
+			throw new KrakeException("Error en la actualización de categoria: " + e.getMessage());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+
+				e.getMessage();
+			}
+		}
+
+		return categoria;
+	}
+
+	public ArrayList<Categoria> recuperarTodos() throws KrakeException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Categoria categoria = null;
+		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("Select * from categorias");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				categoria = new Categoria(rs.getString("id"), rs.getString("nombre"));
+
+				categorias.add(categoria);
+
+			}
+
+		} catch (KrakeException e) {
+			throw e;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new KrakeException("Error en la busqueda de todas las categorias: " + e.getMessage());
+		}
+
+		return categorias;
+
+	}
+
+}

@@ -1,0 +1,38 @@
+package com.krakedev.evaluacion.persistencia;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.krakedev.evaluacion.entidades.Categoria;
+import com.krakedev.evaluacion.excepciones.KrakeException;
+import com.krakedev.evaluacion.utils.ConexionBDD;
+
+public class HistorialBDD {
+
+	public void insertar(Categoria categoria) throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("insert into categorias(id, nombre) values(?,?)");
+			
+			ps.setString(1, categoria.getId());
+			ps.setString(2, categoria.getNombre());
+			
+			ps.execute();
+			
+		} catch (KrakeException e) {
+			throw e;
+		} catch (SQLException e) {
+
+			throw new KrakeException("Error en la insercción de dato" + e.getMessage());
+		}finally {
+			con.close();
+		}
+
+	}
+
+}
